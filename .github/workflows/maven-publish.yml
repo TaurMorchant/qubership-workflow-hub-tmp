@@ -41,6 +41,9 @@ on:
       gpg-passphrase:
         required: false
 
+      sonar-token:
+        required: false
+
 
 jobs:
   mvn:
@@ -73,6 +76,7 @@ jobs:
         run: mvn ${{ inputs.maven-command }}
         env:
           MAVEN_USERNAME: ${{ secrets.maven-username }}
+          SONAR_TOKEN: ${{secrets.sonar-token}}
 
       - name: Upload all Maven target directories
         if: ${{ inputs.upload-artifact }}
